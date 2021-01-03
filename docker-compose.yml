@@ -1,0 +1,29 @@
+version: "3"
+services:
+  global:
+      container_name: global-api
+      image: global:1.0.0
+      ports:
+          - "3000:3000"
+      networks:
+          - globalnetwork
+  tronapi:
+      container_name:  tron-api
+      image: tron-api:1.0.0
+      ports:
+        - "3001:3000"
+      networks: 
+        - globalnetwork
+  api-server:
+      container_name: api-server
+      image: api-server:1.0.0
+      ports:
+        - "80:80"
+        - "443:443"
+      networks: 
+        - globalnetwork          
+networks:
+  globalnetwork:
+    external:
+      name: globalnetwork            
+
